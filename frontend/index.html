@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+        <h1>Cadastro</h1>
+
+        <label for="nome">Nome:</label>
+        <input 
+            type="text" 
+            id="nome" 
+            name="nome" 
+            placeholder="Digite seu nome"
+            required
+        >
+
+        <br><br>
+
+        <label for="email">E-mail:</label>
+        <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            placeholder="Digite seu e-mail"
+            required
+        >
+
+        <br><br>
+
+        <label for="senha">Senha:</label>
+        <input 
+            type="password" 
+            id="senha" 
+            name="senha" 
+            placeholder="Digite sua senha"
+            required
+        >
+
+        <br><br>
+
+        <label for="telefone">Telefone:</label>
+        <input 
+            type="tel" 
+            id="telefone" 
+            name="telefone" 
+            placeholder="Digite seu telefone"
+        >
+
+        <br><br>
+
+        <label for="dataNascimento">Data de nascimento:</label>
+        <input 
+            type="date" 
+            id="dataNascimento" 
+            name="dataNascimento"
+        >
+
+        <br><br>
+
+        <label for="tipo">Tipo de usuário:</label>
+        <select id="tipo" name="tipo">
+            <option value="">Selecione</option>
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Cadastrar
+        </button>
+</body>
+
+</html>
+
+<script>
+    const nome = document.getElementById("nome");
+    const email = document.getElementById("email");
+    const senha = document.getElementById("senha");
+    const tel = document.getElementById("telefone");
+    const dtNasc = document.getElementById("dataNascimento");
+    const tpUser = document.getElementById("tipo");
+</script>
