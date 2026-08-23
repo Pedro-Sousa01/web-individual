@@ -1,86 +1,261 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Cadastro</title>
+
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/icon.png">
 </head>
 
 <body>
+
+    <main>
+
         <h1>Cadastro</h1>
 
-        <label for="nome">Nome:</label>
-        <input 
-            type="text" 
-            id="nome" 
-            name="nome" 
-            placeholder="Digite seu nome"
-            required
-        >
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" oninput="validarNome()">
+            <p id="erroNome" class="mensagem"></p>
 
-        <br><br>
+            <br>
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" oninput="validarEmail()">
+            <p id="erroEmail" class="mensagem"></p>
 
-        <label for="email">E-mail:</label>
-        <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            placeholder="Digite seu e-mail"
-            required
-        >
+            <br>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" oninput="validarSenha()">
+            <p id="erroSenha" class="mensagem"></p>
 
-        <br><br>
+            <br>
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="Digite seu telefone" oninput="validarTelefone()">
+            <p id="erroTelefone" class="mensagem"></p>
 
-        <label for="senha">Senha:</label>
-        <input 
-            type="password" 
-            id="senha" 
-            name="senha" 
-            placeholder="Digite sua senha"
-            required
-        >
+            <br>
+            <label for="dataNascimento">Data de nascimento:</label>
+            <input type="date" id="dataNascimento" name="dataNascimento"onchange="validarDataNascimento()">
+            <p id="erroDataNascimento" class="mensagem"></p>
 
-        <br><br>
+            <br>
+            <label for="tipo">Tipo de usuário:</label>
+            <select id="tipo" name="tipo"onchange="validarTipo()">
+                <option value="" selected disabled>Selecione</option>
+            </select>
+            <p id="erroTipo" class="mensagem"></p>
 
-        <label for="telefone">Telefone:</label>
-        <input 
-            type="tel" 
-            id="telefone" 
-            name="telefone" 
-            placeholder="Digite seu telefone"
-        >
+            <br>
+            <button type="submit" onclick="cadastrar()">Cadastrar</button>
+            <p id="erroTipoButton" class="mensagemButton"></p>
+    </main>
 
-        <br><br>
 
-        <label for="dataNascimento">Data de nascimento:</label>
-        <input 
-            type="date" 
-            id="dataNascimento" 
-            name="dataNascimento"
-        >
+    <script>
+        window.onload = function carregarSelect() {
+            select = document.getElementById("tipo")
 
-        <br><br>
+            fetch('http://localhost:8080/usuarios/tipos')
+            .then((response) => response.json())
+            .then((json) => {
+                for(let i = 0; i < json.length; i++) {
+                    var opt = document.createElement('option');
+                    opt.value = i;
+                    opt.innerHTML = json[i];
+                    select.appendChild(opt);
+            }});
+        }
 
-        <label for="tipo">Tipo de usuário:</label>
-        <select id="tipo" name="tipo">
-            <option value="">Selecione</option>
-        </select>
+        function validarNome() {
+            const nome = document.getElementById("nome");
+            const erroNome = document.getElementById("erroNome");
 
-        <br><br>
+            if (nome.value.trim() === "") {
 
-        <button type="submit">
-            Cadastrar
-        </button>
+                erroNome.textContent = "❌ O nome não pode estar vazio.";
+                erroNome.className = "mensagem erro";
+
+                return false;
+            } else {
+
+                erroNome.textContent = "✓ Nome válido.";
+                erroNome.className = "mensagem sucesso";
+
+                return true;
+            }
+        }
+
+        function validarEmail() {
+            const email = document.getElementById("email");
+            const erroEmail = document.getElementById("erroEmail");
+
+            if (email.value.trim() === "") {
+
+                erroEmail.textContent = "❌ O e-mail não pode estar vazio.";
+                erroEmail.className = "mensagem erro";
+
+                return false;
+            }else if(!email.value.trim().includes('@') || !email.value.trim().includes('.com')) {
+
+                erroEmail.textContent = "❌ O e-mail deve ser válido.";
+                erroEmail.className = "mensagem erro";
+
+                return false;
+            } else {
+
+                erroEmail.textContent = "✓ E-mail válido.";
+                erroEmail.className = "mensagem sucesso";
+
+                return true;
+            }
+        }
+
+
+        function validarSenha() {
+            const senha = document.getElementById("senha");
+            const erroSenha = document.getElementById("erroSenha");
+            if (senha.value.trim() === "") {
+
+                erroSenha.textContent = "❌ A senha não pode estar vazia.";
+                erroSenha.className = "mensagem erro";
+
+                return false;
+            } else if(senha.value.length < 8) {
+
+                erroSenha.textContent = "❌ A senha deve conter mais de 8 caracteres.";
+                erroSenha.className = "mensagem erro";
+
+                return false;
+            }else {
+
+                erroSenha.textContent = "✓ Senha válida.";
+                erroSenha.className = "mensagem sucesso";
+
+                return true;
+            }
+        }
+
+
+        function validarTelefone() {
+            const telefone = document.getElementById("telefone");
+            const erroTelefone = document.getElementById("erroTelefone");
+
+            if (telefone.value.trim() === "") {
+
+                erroTelefone.textContent = "❌ O telefone não pode estar vazio.";
+                erroTelefone.className = "mensagem erro";
+
+                return false;
+            } else if(telefone.value.length != 11) {
+                erroTelefone.textContent = "❌ O telefone deve ser válido.";
+                erroTelefone.className = "mensagem erro";
+
+                return false;
+            }else {
+
+                erroTelefone.textContent = "✓ Telefone válido.";
+                erroTelefone.className = "mensagem sucesso";
+
+                return true;
+            }
+        }
+
+
+        function validarDataNascimento() {
+            const dataNascimento = document.getElementById("dataNascimento");
+            const erroDataNascimento = document.getElementById("erroDataNascimento");
+
+            if (dataNascimento.value === "") {
+
+                erroDataNascimento.textContent = "❌ Informe sua data de nascimento.";
+                erroDataNascimento.className = "mensagem erro";
+
+                return false;
+            } else {
+
+                erroDataNascimento.textContent = "✓ Data válida.";
+                erroDataNascimento.className = "mensagem sucesso";
+
+                return true;
+            }
+        }
+
+
+        function validarTipo() {
+            const tipo = document.getElementById("tipo");
+            const erroTipo = document.getElementById("erroTipo");
+
+            if (tipo.value === "") {
+
+                erroTipo.textContent = "❌ Selecione um tipo de usuário.";
+                erroTipo.className = "mensagem erro";
+
+                return false;
+            } else {
+
+                erroTipo.textContent = "✓ Tipo selecionado.";
+                erroTipo.className = "mensagem sucesso";
+
+                return true;
+            }
+        }
+
+        function validarFormulario() {
+
+            const nomeValido = validarNome();
+            const emailValido = validarEmail();
+            const senhaValida = validarSenha();
+            const telefoneValido = validarTelefone();
+            const dataValida = validarDataNascimento();
+            const tipoValido = validarTipo();
+            if (
+                nomeValido &&
+                emailValido &&
+                senhaValida &&
+                telefoneValido &&
+                dataValida &&
+                tipoValido
+            ) {
+                return true;
+            }
+            return false;
+        }
+
+        function cadastrar() {
+            if(validarFormulario()) {
+
+                 dados = {
+                    nome: nome.value,
+                    email: email.value,
+                    senha: senha.value,
+                    telefone: telefone.value,
+                    dtNascimento: dataNascimento.value,
+                    tipo: tipo.value
+                }
+
+                fetch('http://localhost:8080/usuarios', {
+                    method: 'POST',
+                    body: JSON.stringify(dados),
+                    headers: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
+                })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+                
+                erroTipoButton.textContent = "✓ Cadastro realizado com sucesso.";
+                erroTipoButton.className = "mensagem sucesso";
+            }else {
+                erroTipoButton.textContent = "❌ Campos invalidos.";
+                erroTipoButton.className = "mensagem erro";
+            }
+        }
+
+    </script>
+
 </body>
 
 </html>
-
-<script>
-    const nome = document.getElementById("nome");
-    const email = document.getElementById("email");
-    const senha = document.getElementById("senha");
-    const tel = document.getElementById("telefone");
-    const dtNasc = document.getElementById("dataNascimento");
-    const tpUser = document.getElementById("tipo");
-</script>
