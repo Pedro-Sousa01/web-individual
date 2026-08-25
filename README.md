@@ -30,7 +30,7 @@
 ├── frontend/
 │   ├── index.html
 │   ├── style.css
-│   └── README.md
+│   └── ...
 └── README.md
 ```
 
