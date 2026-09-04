@@ -1,22 +1,27 @@
-<h1 align="center">📝 Formulário de Cadastro</h1>
-<p align="center">Um projeto de cadastro utilizando HTML5, CSS3 e uma API REST em Spring Boot.</p>
+# 📼 Celeste
+
+<p align="center">
+<img src="https://img.shields.io/badge/Status-Conclu%C3%ADdo-orange?style=for-the-badge">
+<img src="https://img.shields.io/badge/Backend-Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+</p>
 
 <div align="center">
 
-🚧 **Projeto em desenvolvimento** 🚧
-
+  <img width="400px" alt="Logo Celeste" src="https://Upload.wikimedia.org/wikipedia/commons/b/bd/Celeste_video_game_logo.png">
+  
+  *Um projeto de Mídia Tracker utilizando HTML5, CSS3 e uma API REST em Spring Boot.*
 </div>
 
 # 💬 Sobre o Projeto
 
 <p align="justify">
-&nbsp; O projeto consiste no desenvolvimento de um formulário de cadastro utilizando <strong>HTML5</strong> e <strong>CSS3</strong>, integrado a uma <strong>API REST desenvolvida em Spring Boot</strong>.
+&nbsp; O projeto consiste no desenvolvimento de um Mídia Tracker, utilizando <strong>HTML5</strong> e <strong>CSS3</strong>, integrado a uma <strong>API REST desenvolvida em Spring Boot</strong>.
 </p>
 
 # 🎯 Objetivo
 
 <p align="justify">
-&nbsp; Criar uma interface simples para cadastro de usuários, permitindo o envio, armazenamento e consumo dos dados através da API.
+&nbsp; Criar uma interface para cadastro de mídias assistidas, realizando o armazenamento, consumo e ingestão dos dados através da API Rest integrada a um banco de dados MySQL.
 </p>
 
 # 📦 Estrutura
@@ -30,6 +35,7 @@
 ├── frontend/
 │   ├── index.html
 │   ├── style.css
+│   ├── script.js
 │   └── ...
 └── README.md
 ```
@@ -42,7 +48,7 @@ Abra o projeto Spring Boot em uma IDE Java e execute a classe principal da aplic
 
 O backend será inicializado em:
 
-> http://localhost:8080
+> http://localhost:8080/midias
 
 ### 2. Frontend
 
@@ -60,7 +66,7 @@ Dessa forma, o frontend será aberto pelo navegador e conseguirá se comunicar c
 **Back-end**
 
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-%236DB33F.svg?style=for-the-badge\&logo=springboot\&logoColor=white)
-![H2](https://img.shields.io/badge/H2-%2300477B.svg?style=for-the-badge\&logo=h2\&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 <div align="center">
   
