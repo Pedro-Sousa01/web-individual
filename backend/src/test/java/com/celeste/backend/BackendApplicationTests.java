@@ -1,4 +1,4 @@
-package com.cadastro.backend;
+package com.celeste.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
