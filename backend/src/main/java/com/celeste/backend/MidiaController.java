@@ -106,28 +106,20 @@ public class MidiaController {
 
     }
 
-    public boolean validarCampos (Midia m) {
-        List<Boolean> validacoes = new ArrayList<>();
-        Boolean validarTitulo = (m.getTitulo() != null && !m.getTitulo().trim().isEmpty());
-        validacoes.add(validarTitulo);
-        Boolean validarTipo = (m.getTipo() == Tipo.Anime
-                || m.getTipo() == Tipo.Filme
-                || m.getTipo() == Tipo.Jogo
-                || m.getTipo() == Tipo.Livro
-                || m.getTipo() == Tipo.Manga
-                || m.getTipo() == Tipo.Série);
-        validacoes.add(validarTipo);
-        Boolean validarNota = (m.getNota() != null && m.getNota() > 0);
-        validacoes.add(validarNota);
-        if(m.getFoto_url() != null) {
-            Boolean validarURL = (!m.getFoto_url().trim().isEmpty());
-            validacoes.add(validarURL);
-        }
-        if(m.getComentario() != null ) {
-            Boolean validarComentario = (!m.getComentario().trim().isEmpty());
-            validacoes.add(validarComentario);
-        }
-        return validacoes.stream().allMatch(Boolean::booleanValue);
+    public boolean validarCampos(Midia m) {
+        boolean validarTitulo =
+                m.getTitulo() != null &&
+                        !m.getTitulo().trim().isEmpty();
+
+        boolean validarTipo =
+                m.getTipo() != null;
+
+        boolean validarNota =
+                m.getNota() != null &&
+                        m.getNota() > 0 &&
+                        m.getNota() <= 10;
+
+        return validarTitulo && validarTipo && validarNota;
     }
 
     public boolean validarID (Integer id) {
